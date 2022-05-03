@@ -1,10 +1,12 @@
 
 import urllib.request,json
-from .models import Source
+from .models import Source,Article
 
 api_key = None
 
 base_url = None
+
+articles_url = None
 
 def get_sources():
   '''
@@ -42,6 +44,50 @@ def process_results(source_list):
 
   return source_results
 
+def get_articles(source):
+  get_articles_url =  articles_url.format(source, api_key)
+
+  with urllib.request.urlopen(get_articles_url) as url:
+    get_articles_data = url.read()
+    get_articles_response =json.loads(get_articles_data)
+
+    get_articles_results = None
+
+    if get_articles_response['articles']:
+      get_articles_results_list = get_articles_response['articles']
+      get_articles_results = process_article_results(get_articles_results_list)
+
+  return ( get_articles_results)
+
+def process_article_results(get_articles_results_list):
+  '''
+  Function to process the Article results and transforms them to a list of objects
+  '''
+  get_articles_results = []
+
+  for article_item in get_articles_results_list:
+    author = article_item.get('author')
+    title = article_item.get('title')
+    description = article_item.get('description')
+    article_url = article_item.get('article_url')
+    image_url = article_item.get('image_url')
+    publishedAt = article_item.get('publishedAt')
+    content = article_item.get('content')
+
+    get_articles_object = Article(author, title, description, article_url, image_url, publishedAt, content)
+
+    get_articles_results.append(get_articles_object)
+
+  return get_articles_results
+
+
+
+    
+
+
+
+
+   
   
 
 
