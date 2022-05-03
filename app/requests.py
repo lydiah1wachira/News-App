@@ -20,9 +20,9 @@ def get_sources():
 
     if get_sources_response['results']:
       sources_results_list = get_sources_response['results']
-      sources_results = process_results(sources_results_list)
+      source_results = process_results(sources_results_list)
 
-  return sources_results
+  return source_results
 
 def process_results(source_list):
   '''
