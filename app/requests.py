@@ -1,4 +1,4 @@
-from multiprocessing import get_all_start_methods
+
 import urllib.request,json
 from .models import Source
 
@@ -21,5 +21,29 @@ def get_sources():
     if get_sources_response['results']:
       sources_results_list = get_sources_response['results']
       sources_results = process_results(sources_results_list)
-      
+
   return sources_results
+
+def process_results(source_list):
+  '''
+  Function that processes the sources results and transforms them to a list of Objects
+  '''
+  source_results = []
+  for source_item in source_list:
+    id = source_item.get('id')
+    name = source_item.get('name')
+    description = source_item.get('description')
+    language = source_item.get('language')
+    source_url = source_item.get('source_url')
+
+    source_object = Source(id, name, description, language, source_url)
+
+    source_results.append(source_object)
+
+  return source_results
+
+  
+
+
+
+
