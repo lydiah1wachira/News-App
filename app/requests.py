@@ -1,4 +1,3 @@
-
 import urllib.request,json
 from .models import Source,Article
 
@@ -7,6 +6,12 @@ api_key = None
 base_url = None
 
 articles_url = None
+
+def configure_request(app):
+  global api_key,base_url,articles_url
+  api_key = app.config['NEWS_API_KEY']
+  base_url = app.config['NEWS_API_BASE_URL']
+  articles_url = app.config['ARTICLES_BASE_URL']
 
 def get_sources():
   '''
@@ -48,24 +53,24 @@ def get_articles(source):
   get_articles_url =  articles_url.format(source, api_key)
 
   with urllib.request.urlopen(get_articles_url) as url:
-    get_articles_data = url.read()
-    get_articles_response =json.loads(get_articles_data)
+    articles_data = url.read()
+    articles_response =json.loads(articles_data)
 
     get_articles_results = None
 
-    if get_articles_response['articles']:
-      get_articles_results_list = get_articles_response['articles']
-      get_articles_results = process_article_results(get_articles_results_list)
+    if articles_response['articles']:
+      articles_results_list = articles_response['articles']
+      articles_results = process_article_results(articles_results_list)
 
-  return ( get_articles_results)
+  return (articles_results)
 
-def process_article_results(get_articles_results_list):
+def process_article_results(articles_results_list):
   '''
   Function to process the Article results and transforms them to a list of objects
   '''
   get_articles_results = []
 
-  for article_item in get_articles_results_list:
+  for article_item in articles_results_list:
     author = article_item.get('author')
     title = article_item.get('title')
     description = article_item.get('description')
