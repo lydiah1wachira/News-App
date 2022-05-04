@@ -16,8 +16,8 @@ def index():
 
   return render_template('index.html', title= title, sources = sources)
 
-@main.route('/source/<id>')
-def articles(id):
+@main.route('/articles/')
+def articles():
   '''
   View Articles page function that returns the Article-list  details and its data
   '''
@@ -29,4 +29,14 @@ def articles(id):
   print(tech_articles)
 
   return render_template('articles.html', business = business_aricles, technology = tech_articles, politics = politics_articles, sports = sports_articles)
-  
+
+@main.route('/source/<id>')
+def article(id):
+    '''
+    view articles function that returns a list of articles on the articles
+    '''
+
+    article = get_articles(id)
+    title = f'Today In Tabs |  {id}'    
+
+    return render_template('article.html', title = title, article = article)  

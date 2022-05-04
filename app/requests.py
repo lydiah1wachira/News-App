@@ -68,7 +68,7 @@ def process_article_results(articles_results_list):
   '''
   Function to process the Article results and transforms them to a list of objects
   '''
-  get_articles_results = []
+  articles_results = []
 
   for article_item in articles_results_list:
     author = article_item.get('author')
@@ -79,11 +79,11 @@ def process_article_results(articles_results_list):
     publishedAt = article_item.get('publishedAt')
     content = article_item.get('content')
 
-    get_articles_object = Article(author, title, description, article_url, image_url, publishedAt, content)
+    articles_object = Article(author, title, description, article_url, image_url, publishedAt, content)
 
-    get_articles_results.append(get_articles_object)
+    articles_results.append(articles_object)
 
-  return get_articles_results
+  return articles_results
 
 
 
