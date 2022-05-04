@@ -32,21 +32,21 @@ You need the following to start working on the project on your local computer:
 ## Getting Started
 
 * Clone this repository to your local computer.
-* Ensure you have python3.6 installed in your computer.
+* Ensure you have python3 installed in your computer.
 * From the terminal navigate to the cloned project folder.
-* Create a virtual environment and access the folder via your virtual amchine.
+* Create a virtual environment and access the folder via your virtual machine.
 * Visit https://newsapi.org/ and register for an API key.
 * Create start.sh file and in it write the following lines:
 ```
  export NEWS_API_KEY='<Your-Api-Key>'
- python3.6 manage.py server
+ python3<your python version> manage.py server
 ```
-* Run ```chmod +x start.sh``` follwoed by ``` ./start.sh ``` while in the project folder to start the project.
+* Run ```chmod +x start.sh``` followed by ``` ./start.sh ``` while in the project folder to start the project.
 * Once started, the project can be accessed on your localhost using the address: ``` localhost:5000 ```.
-* Alternatively the application can be accessed by visiting https://ppolle-news-highlights.herokuapp.com
+
 
 ## Technologies Used
 
 * Python v3.8
-* Boostrap
+* Bootstrap
 * Flask
