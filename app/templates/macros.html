@@ -14,22 +14,3 @@
     
 {% endmacro %}
 
-{% macro for displayArticles(articles) %}
-
-  {% for article in articles%}
-
-    <div class="card-deck">
-      <div class="card">
-        <img class="card-img-top image_url" src="{{article.image_url}}" alt="news image"/>
-      </div>
-      <h5>{{article.title}}</h5>
-      <p>{{article.description}}</p>
-      <a href="{{article.article_url}}" target="blank">Read More..</a>
-      <p class="card-text"><small class="text-muted">{{{{article.publishedAt}}</small></p>
-    </div>
-
-  {% endfor %}
-
-{% endmacro%}
-
-  
