@@ -1,11 +1,15 @@
+from unicodedata import category
+
+
 class Source:
   '''
   Source class to define news Source Objects
   '''
-  def __init__(self, id, name, description, language, source_url):
+  def __init__(self, id, name, description, category, language, source_url):
     self.id = id
     self.name = name
     self.description = description
+    self.category = category
     self.language = language
     self.source_url = source_url
 

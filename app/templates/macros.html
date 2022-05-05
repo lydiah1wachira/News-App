@@ -1,16 +1,26 @@
 {% macro displaySourceList(source_list) %}
 
     {%for source in source_list %}
-    
-    
-        <div class="col-md-4">
-          <h3>News Sources</h3>
-          <li class="text-center">
-            <a href="/source/{{source.id}}"> {{ source.name}}</a>
-          </li>
+      <div class="col-md-4">
+        <div class="card-column">
+          <div class="card">
+            <div class="card-body">
+              <div class="card-title"  style="background-color: #e7e0e9; color: rgb(8, 5, 0)">
+                <h3>{{ source.name}}</h3>
+              </div>
+                
+                
+              <p class="card-subtitle mb-2 text-muted">{{ source.description |truncate(200)}}</p>
+              <a href="/source/{{source.id}}"  class="card-link text-center" style="color: #f652dc; text-align: center;">view articles</a>
+            </div>
         </div>
+          
+      </div>
+      
+      
          
-       
+
+   
    
     {% endfor %}
     
@@ -19,7 +29,7 @@
 {% macro displayArticles(articles_list) %}
         {% for article in article_list %}
         <div class="col-md-8">
-          <div class="card-deck">
+         
             <div class="card">
               <img class="card-img-top img-responsive" src="{{article.image_url}}"
               alt="{{article.title}}"/>
@@ -28,12 +38,12 @@
                 <p class="card-text">{{article.description | truncate(90)}}</p>
                 <p class="card-text">By: {{article.author}}</p>
                 <p class="card-text">
-                  <small class="text-muted"> Published on: {{{{article.publishedAt}}</small>
+                  <small class="text-muted"> Published on: {{article.publishedAt}}</small>
                 </p>
                 <a href="{{article.article_url}}" class="card-link text-center" style="color:#F652DC; text-align: center;">Read More..</a>
               </div>
             </div>
-          </div>
+          
         </div>
         {% endfor %}
 {% endmacro %}

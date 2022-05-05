@@ -9,26 +9,18 @@ def index():
   '''
   View root page function that returns the index page and its data
   '''
-  sources = get_sources()
+  business_sources = get_sources('business')
+  tech_sources =get_sources('technology')
+  politics_sources = get_sources('politics')
+  sports_sources = get_sources('sports')
+
+  print('business_sources')
+
+  title = 'The Daily Prophet'
   
-  title = f'{sources.name}'
+  
+  return render_template('index.html', title= title, technology = tech_sources, business = business_sources, politics=politics_sources,sports = sports_sources)
 
-
-  return render_template('index.html', title= title, sources = sources)
-
-@main.route('/articles/')
-def articles():
-  '''
-  View Articles page function that returns the Article-list  details and its data
-  '''
-  business_aricles= get_articles('business')
-  tech_articles = get_articles('technology')
-  politics_articles=get_articles('politics')
-  sports_articles = get_articles('sports')
-
-  print(tech_articles)
-
-  return render_template('articles.html', business = business_aricles, technology = tech_articles, politics = politics_articles, sports = sports_articles)
 
 @main.route('/source/<id>')
 def article(id):
@@ -37,6 +29,8 @@ def article(id):
     '''
 
     article = get_articles(id)
-    title = f'Today In Tabs |  {id}'    
+    title = 'Top Headlines'
+    print(title)
+  
 
-    return render_template('article.html', title = title, article = article)  
+    return render_template('articles.html', article = article)  
