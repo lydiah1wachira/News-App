@@ -1,33 +1,39 @@
 {% extends 'base.html' %} 
 
+
 {% block content %}
 <div class="container">
   <h2>Top Stories</h2>
+  <div class="container">
+    <div class="row">
+      {% for article in article_row %}
+  
+      <div class="col-md-3">
+        <div class="thumbnail" >
+          
 
-  {% for article_row in articles %}
+          <div class="caption" style="color: white;background-color: rgb(29, 13, 25);" >
+            <h4><a href="{{article.articl_url}}" target="_blank" style="color: white; font-family: 'Times New Roman', Times, serif; text-transform: uppercase;">{{article.title}}</a></h4>
+            <p>{{article.description | truncate(80)}}</p>
+            <a href="{{article.url}}" target="_blank" style="color: white;"> Read More</a>
+          </div>
 
-  <div class="row">
-    <div class="col-md-3">
-      <div class="caption" style="color: white;background-color: teal;" >
-        <h4><a href="{{article.article_url}}" target="_blank" style="color: white; font-family: 'Times New Roman', Times, serif; text-transform: uppercase;">{{article.title |truncate(45)}}</a></h4>
-        <p>{{article.description | truncate(80)}}</p>
-        <a href="{{articles.article_url}}" target="_blank" style="color: white;"> Read More</a>
+          
+          <a href="{{article.article_url}}" target="_blank">
+            <img src="{{article.image_url}}" alt="{{article.title}}" class="img-responsive" styles="height:30px">
+          </a>
+          <div class="footer" >
+            Published at: {{article.publishedAt}}
+            By: Article.author
+          </div>
+
+        </div>
+
       </div>
 
-      
-      <a href="{{article.article_url}}" target="_blank">
-        <img src="{{article.image}}" alt="{{article.title}}" class="img-responsive" styles="height:30px">
-      </a>
-      <div class="footer" >
-        Published at: {{article.publishedAt}}
-        By: {{article.author}}
-      </div> 
+  {% endfor %}
     </div>
-   
-
-
   </div>
-</div>
-{% endfor %}
+
 
 {% endblock %}

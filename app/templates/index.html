@@ -13,30 +13,27 @@
 </head>
 
   {% block content%}
-  <div class="container-fluid">
+  <div class="container">
     <h2>NEWS SOURCES</h2>
     <div class="row">
-      
+
+      <div class="col-md-3">
         <h3>Business</h3>
         {{ macro.displaySourceList(business) }}  
-      
-     
+      </div>
+      <div class="col-md-1"></div>
+      <div class="col-md-3">
         <h3>Technology</h3>
-        {{macro.displaySourceList(technology)}}
-  
-  
-        <h3>Sports</h3>
-        {{macro.displaySourceList(sports)}}
-      
-    
-    </div>
-           
-     
-      
+        {{macro.displaySourceList(technology)}} 
+      </div>
+      <div class="col-md-1"></div>
+      <div class="col-md-3">
+          <h3>Sports</h3>
+          {{macro.displaySourceList(sports)}}  
+      </div> 
+      <div class="col-md-1"></div>
+    </div>    
   </div>
-    
-  
- 
  
 
   {% endblock %} 
